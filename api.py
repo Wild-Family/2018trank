@@ -17,7 +17,8 @@ wait_flag = False
 camera = picamera.PiCamera()
 
 pygame.mixer.init()
-sound1 = pygame.mixer.Sound("./take1.wav")
+start = pygame.mixer.Sound("./take1.wav")
+wait = pygame.mixer.Sound("./wait.wav")
 
 save_path = "./img/"
 
@@ -75,9 +76,10 @@ def main(id):
 
     print(wait_flag)
     if wait_flag:
+        wait.play()
         return "wait"
     wait_flag = True
-    sound1.play()
+    start.play()
     return str(id)
 
 @route('/status/<id>')
