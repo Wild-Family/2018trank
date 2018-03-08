@@ -40,13 +40,13 @@ def detect_face(face_file, max_results=4):
     return client.face_detection(image=image).face_annotations
 
 def highlight_faces(image, faces):
+    box = ((0,0), (0,0), (0,0), (0,0))
     for face in faces:
         left_eye =  face.landmarks[0].position
         right_eye = face.landmarks[1].position
         nose_tip =  face.landmarks[7].position
 
         box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]#(左上、右上、右下、左下)
-    print(box)
     return check_face_loc(box,left_eye,right_eye,nose_tip)
 
 def get_face(input_filename,max_results):
