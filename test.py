@@ -80,6 +80,7 @@ def highlight_faces(image, faces):
     return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
 def get_face(input_filename,max_results):
+    pygame.mixer.init()
     nobody  = pygame.mixer.Sound("./nobody.wav")
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
@@ -102,7 +103,6 @@ if __name__ == '__main__':
     count1.play()
     time.sleep(1)
     shut.play()
-    nobody.play()
     camera.capture(pic_loc)
 
     check_face_loc_result = get_face(pic_loc, 1)
