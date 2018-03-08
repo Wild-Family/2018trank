@@ -108,4 +108,4 @@ if __name__ == '__main__':
         print(check_face_loc_result)
         time.sleep(5)
         if check_face_loc_result == "ok":
-            return
+            return 0
