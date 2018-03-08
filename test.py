@@ -87,6 +87,7 @@ def get_face(input_filename,max_results):
         if not faces:
             print("顔を認識できません")
             nobody.play()
+            time.sleep(2)
             return "nobody"
         image.seek(0)
         return highlight_faces(image, faces)
