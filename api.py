@@ -66,6 +66,7 @@ def get_face(input_filename,max_results):
 
 @route('/start/<id>')
 def main(id):
+    sound1.play()
     return str(id)
 
 @route('/status/<id>')
@@ -82,6 +83,18 @@ def status(id):
     status = get_face(pic_loc, 1)
 
     return status
+
+@route('/take/<id>')
+def take_pic(id):
+    global save_path
+    global camera
+    pic_name = id + ".jpg"
+    pic_loc = save_path + pic_name
+
+    # 撮影
+    camera.resolution = (1024,768) 
+    camera.capture(pic_loc)
+    return "ok"
 
 @route('/pic/<id>')
 def get_pic(id):
