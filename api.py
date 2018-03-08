@@ -25,6 +25,7 @@ forward = pygame.mixer.Sound("./forward.wav")
 back    = pygame.mixer.Sound("./back.wav")
 left    = pygame.mixer.Sound("./left.wav")
 right   = pygame.mixer.Sound("./right.wav")
+smile   = pygame.mixer.Sound("./smile.wav")
 end     = pygame.mixer.Sound("./end.wav")
 
 save_path = "./img/"
@@ -47,6 +48,7 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
         return "back" #顔はもう少し下に
     if(joyLikelihood == 1):
         print("笑顔になって")
+        smile.play()
         return "smile"
     return "ok"
 
