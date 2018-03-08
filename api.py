@@ -16,7 +16,6 @@ camera = picamera.PiCamera()
 
 pygame.mixer.init()
 sound1 = pygame.mixer.Sound("./take1.wav")
-#sound2 = pygame.mixer.Sound("nc2036.wav")
 
 save_path = "./img/"
 
@@ -39,7 +38,6 @@ def detect_face(face_file, max_results=4):
     content = face_file.read()
     image = types.Image(content=content)
     return client.face_detection(image=image).face_annotations
-
 
 def highlight_faces(image, faces):
     for face in faces:
@@ -67,9 +65,7 @@ def status(id):
     global save_path
     pic_name  =  id + ".jpg"
     pic_loc   = save_path + pic_name
-    # for x in range(1,4):
-    #     sound1.play()
-        #time.sleep(1)
+
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
 
