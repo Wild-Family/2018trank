@@ -5,11 +5,12 @@ import os
 import picamera
 import pygame.mixer
 
+camera = picamera.PiCamera()
+
 pygame.mixer.init()
 sound1 = pygame.mixer.Sound("./take1.wav")
 #sound2 = pygame.mixer.Sound("nc2036.wav")
    
-#camera = picamera.PiCamera()
 
 save_path = "./img/"
 
