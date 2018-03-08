@@ -133,7 +133,7 @@ def get_pic(id):
     #return "faile do not exists"
 
 @route('/end/<id>')
-def end(id):
+def end_obachan(id):
     end.play()
 
 #TODO:localhost setting
