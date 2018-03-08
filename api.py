@@ -32,21 +32,6 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip):
         return "forward" #顔はもう少し上に
     if(face_box[3][1] < 768*1/2):
         return "back" #顔はもう少し下に
-    
-    
-    # print(nose_tip.x)
-    # if(nose_tip.x < 1024*4/7):
-    #     print("もうちょい右やで")    
-    #     return "move right"
-    # if(nose_tip.x > 1024*4/7):
-    #     print("もうちょい左やで")
-    #     return "move left"
-    # if(nose_tip.y < 768*4/7):
-    #     print("もうちょい下(後ろに下がって)")
-    #     return "get back"
-    # if(nose_tip.y > 768*4/7):
-    #     print("もうちょい上(前に出て)")
-    #     return "move forward"
     return "ok"
 
 def detect_face(face_file, max_results=4):
@@ -63,16 +48,10 @@ def highlight_faces(image, faces):
         nose_tip =  face.landmarks[7].position
 
         box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]#(左上、右上、右下、左下)
-        #print(faces)
-        #print(face.landmarks[0].position)#左目
-        #print(face.landmarks[1].position)#右目
-    #print(left_eye)
-    #print(right_eye)
-    #print(nose_tip)
     print(box)
     return check_face_loc(box,left_eye,right_eye,nose_tip)
 
-def main(input_filename,max_results):
+def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image, max_results)
         image.seek(0)
@@ -88,13 +67,15 @@ def status(id):
     global save_path
     pic_name  =  id + ".jpg"
     pic_loc   = save_path + pic_name
-    for x in range(1,4):
-        sound1.play()
+    # for x in range(1,4):
+    #     sound1.play()
         #time.sleep(1)
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
 
-    return pic_loc
+    status = get_face(pic_loc, 1)
+
+    return status
 
 @route('/pic/<id>')
 def get_pic(id):
