@@ -110,6 +110,7 @@ def status(id):
 def get_pic(id):
     global save_path
     global camera
+    global wait_flag
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
