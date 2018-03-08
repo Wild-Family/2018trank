@@ -91,6 +91,8 @@ if __name__ == '__main__':
     pic_loc   = save_path + pic_name
 
     count3.play()
+    count2.play()
+    count1.play()
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
 
