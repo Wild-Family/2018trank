@@ -1,32 +1,29 @@
 # -*- coding:utf-8 -*-
 from bottle import route, run, view, static_file, url
-from bottle import get, post, request
-from datetime import datetime
-import random
+from bottle import get, request
+import os
 #import picamera
-import time
-#import common
 import pygame.mixer
 
 pygame.mixer.init()
-sound1 = pygame.mixer.Sound("./test.wav")
+sound1 = pygame.mixer.Sound("./take1.wav")
 #sound2 = pygame.mixer.Sound("nc2036.wav")
    
 #camera = picamera.PiCamera()
 
-@route('/')
-def main():
-    return "test"
+id = 0
 
-@route('/take')
-def take():
+@route('/start')
+def main():
+    id += 1
+    return id
+
+@route('/status/<id>')
+def status(id):
     #take picture
     save_path = "./img/"
-    main_name = datetime.now().strftime("%Y%m%d_%H%M%S")#201712_xxxxx
-    rand_char = str(random.randint(1,1000))               
-    file_ext  = ".jpg" 
-    pic_name  =  main_name + rand_char + file_ext       #201712_xxxxx0.jpg
-    pic_loc   = save_path + pic_name                    #./static/img/201712_xxxxx0.jpg
+    pic_name  =  id + ".jpg"
+    pic_loc   = save_path + pic_name
     #camera.resolution = (1024,768) 
     #camera.capture(pic_loc)
 
@@ -40,5 +37,13 @@ def take():
     
     return pic_loc
 
+@route('/get_pic/<id>')
+def get_pic(id):
+    pic_name = id + ".jpg"
+    if os.path.isfile(pic_name):
+        return "file exists"
+    return "file do not exists"
+
+
 #TODO:localhost setting
-run(host='localhost', port=8080, debug=True)
+run(host='192.168.167.214', port=8080, debug=True)
