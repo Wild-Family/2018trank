@@ -2,7 +2,7 @@
 from bottle import route, run, view, static_file, url
 from bottle import get, request, response
 import os
-#import picamera
+import picamera
 import pygame.mixer
 
 pygame.mixer.init()
@@ -23,20 +23,17 @@ def status(id):
     global save_path
     pic_name  =  id + ".jpg"
     pic_loc   = save_path + pic_name
-    #camera.resolution = (1024,768) 
-    #camera.capture(pic_loc)
-
-    #print picture
     for x in range(1,4):
         sound1.play()
         #time.sleep(1)
+    camera.resolution = (1024,768) 
+    camera.capture(pic_loc)
 
     #sound2.play()	
-    #common.pic_print(pic_loc)
 
     return pic_loc
 
-@route('/get_pic/<id>')
+@route('/pic/<id>')
 def get_pic(id):
     global save_path
     pic_name = id + ".jpg"
