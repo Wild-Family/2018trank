@@ -73,7 +73,8 @@ def get_face(input_filename,max_results):
 def main(id):
     global wait_flag
 
-    if not wait_flag:
+    print(wait_flag)
+    if wait_flag:
         return "wait"
     wait_flag = True
     sound1.play()
