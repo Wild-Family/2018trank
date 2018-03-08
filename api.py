@@ -11,13 +11,10 @@ sound1 = pygame.mixer.Sound("./take1.wav")
    
 #camera = picamera.PiCamera()
 
-id = 0
 save_path = "./img/"
 
-@route('/start')
-def main():
-    global id
-    id += 1
+@route('/start/<id>')
+def main(id):
     return str(id)
 
 @route('/status/<id>')
