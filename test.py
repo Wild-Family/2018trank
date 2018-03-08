@@ -93,16 +93,19 @@ if __name__ == '__main__':
     pic_name  = "test.jpg"
     pic_loc   = save_path + pic_name
 
-    camera.resolution = (1024,768) 
-    count3.play()
-    time.sleep(1)
-    count2.play()
-    time.sleep(1)
-    count1.play()
-    time.sleep(1)
-    shut.play()
-    camera.capture(pic_loc)
+    while True:
+        camera.resolution = (1024,768)
+        count3.play()
+        time.sleep(1)
+        count2.play()
+        time.sleep(1)
+        count1.play()
+        time.sleep(1)
+        shut.play()
+        camera.capture(pic_loc)
 
-    check_face_loc_result = get_face(pic_loc, 1)
-    print(check_face_loc_result)
-    time.sleep(5)
+        check_face_loc_result = get_face(pic_loc, 1)
+        print(check_face_loc_result)
+        time.sleep(5)
+        if check_face_loc_result == "ok":
+            return

@@ -124,8 +124,12 @@ def get_pic(id):
     take.play()
     camera.resolution = (1024,768)
     count3.play()
+    time.sleep(1)
     count2.play()
+    time.sleep(1)
     count1.play()
+    time.sleep(1)
+    shut.play()
     camera.capture(pic_loc)
 
     # wait_flag
