@@ -24,7 +24,7 @@ angry   = pygame.mixer.Sound("./angry.wav")
 count1  = pygame.mixer.Sound("./count1.wav")
 count2  = pygame.mixer.Sound("./count2.wav")
 count3  = pygame.mixer.Sound("./count3.wav")
-shut  = pygame.mixer.Sound("./camera.wav")
+shut    = pygame.mixer.Sound("./camera.wav")
 
 save_path = "./img/"
 
@@ -49,6 +49,7 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
         print("笑顔になって")
         smile.play()
         return "smile"
+    shut.play()
     return "ok"
 
 def detect_face(face_file, max_results=4):
