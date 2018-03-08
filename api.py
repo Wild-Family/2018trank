@@ -75,7 +75,7 @@ def main(id):
 
     if not wait_flag:
         return "wait"
-    wait_flag = true
+    wait_flag = True
     sound1.play()
     return str(id)
 
@@ -103,7 +103,7 @@ def get_pic(id):
     camera.capture(pic_loc)
 
     # wait_flag
-    wait_flag = false
+    wait_flag = False
 
     if not os.path.isfile(pic_loc):
         return "file do not exists"
