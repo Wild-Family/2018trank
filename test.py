@@ -2,6 +2,7 @@ import picamera
 import pygame.mixer
 import json
 import argparse
+import time
 
 from google.cloud import vision
 from google.cloud.vision import types
@@ -91,8 +92,11 @@ if __name__ == '__main__':
     pic_loc   = save_path + pic_name
 
     count3.play()
+    time.sleep(1)
     count2.play()
+    time.sleep(1)
     count1.play()
+    time.sleep(1)
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
 
