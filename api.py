@@ -84,8 +84,9 @@ def status(id):
     status = get_face(pic_loc, 1)
     return status
 
-@route('/take/<id>')
-def take_pic(id):
+
+@route('/pic/<id>')
+def get_pic(id):
     global save_path
     global camera
     pic_name = id + ".jpg"
@@ -94,13 +95,6 @@ def take_pic(id):
     # 撮影
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
-    return "ok"
-
-@route('/pic/<id>')
-def get_pic(id):
-    global save_path
-    pic_name = id + ".jpg"
-    pic_loc = save_path + pic_name
 
     if not os.path.isfile(pic_loc):
         return "file do not exists"
