@@ -24,7 +24,7 @@ angry   = pygame.mixer.Sound("./angry.wav")
 count1  = pygame.mixer.Sound("./count1.wav")
 count2  = pygame.mixer.Sound("./count2.wav")
 count3  = pygame.mixer.Sound("./count3.wav")
-camera  = pygame.mixer.Sound("./camera.wav")
+shut  = pygame.mixer.Sound("./camera.wav")
 
 save_path = "./img/"
 
@@ -99,7 +99,7 @@ if __name__ == '__main__':
     time.sleep(1)
     count1.play()
     time.sleep(1)
-    camera.play()
+    shut.play()
     camera.capture(pic_loc)
 
     check_face_loc_result = get_face(pic_loc, 1)
