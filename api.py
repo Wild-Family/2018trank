@@ -15,8 +15,9 @@ id = 0
 
 @route('/start')
 def main():
+    global id
     id += 1
-    return id
+    return str(id)
 
 @route('/status/<id>')
 def status(id):
@@ -46,4 +47,4 @@ def get_pic(id):
 
 
 #TODO:localhost setting
-run(host='192.168.167.214', port=8080, debug=True)
+run(host='localhost', port=8080, debug=True)
