@@ -27,6 +27,10 @@ left    = pygame.mixer.Sound("./left.wav")
 right   = pygame.mixer.Sound("./right.wav")
 smile   = pygame.mixer.Sound("./smile.wav")
 end     = pygame.mixer.Sound("./end.wav")
+angry   = pygame.mixer.Sound("./angry.wav")
+count1  = pygame.mixer.Sound("./count1.wav")
+count2  = pygame.mixer.Sound("./count2.wav")
+count3  = pygame.mixer.Sound("./count3.wav")
 
 save_path = "./img/"
 
@@ -106,6 +110,8 @@ def status(id):
     #take picture
     global save_path
     global camera
+    global status_count
+
     pic_name  =  id + ".jpg"
     pic_loc   = save_path + pic_name
     camera.resolution = (1024,768) 
@@ -123,7 +129,10 @@ def get_pic(id):
 
     # 撮影
     take.play()
-    camera.resolution = (1024,768) 
+    camera.resolution = (1024,768)
+    count3.play()
+    count2.play()
+    count1.play()
     camera.capture(pic_loc)
 
     # wait_flag
@@ -143,6 +152,11 @@ def get_pic(id):
 @route('/end/<id>')
 def end_obachan(id):
     end.play()
+
+@route('/angry/<id>')
+def angry_obachan(id):
+    angry.play()
+    return "angry"
 
 #TODO:localhost setting
 run(host='localhost', port=8080, debug=True)
