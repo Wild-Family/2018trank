@@ -28,7 +28,7 @@ right   = pygame.mixer.Sound("./right.wav")
 
 save_path = "./img/"
 
-def check_face_loc(face_box,left_eye,right_eye,nose_tip):
+def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     # if((face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):#ここ調整
     #     print("もう少し近づいて")
     #     return "forward"
@@ -44,6 +44,9 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip):
     if(face_box[3][1] < 768*1/2):
         back.play()
         return "back" #顔はもう少し下に
+    if(joyLikelihood == 1):
+        print("笑顔になって")
+        return "smile"
     return "ok"
 
 def detect_face(face_file, max_results=4):
@@ -57,6 +60,7 @@ def highlight_faces(image, faces):
     left_eye = None
     right_eye = None
     nose_tip = None
+    joyLikelihood = None
 
     im = Image.open(image)
     draw = ImageDraw.Draw(im)
@@ -65,11 +69,12 @@ def highlight_faces(image, faces):
         left_eye =  face.landmarks[0].position
         right_eye = face.landmarks[1].position
         nose_tip =  face.landmarks[7].position
-
+        joyLikelihood = face.joy_likelihood
+        
         box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]#(左上、右上、右下、左下)
         draw.line(box + [box[0]], width=5, fill='#00ff00')
     im.save("./output.jpg")
-    return check_face_loc(box,left_eye,right_eye,nose_tip)
+    return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
 def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
