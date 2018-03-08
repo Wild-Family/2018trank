@@ -40,7 +40,7 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip):
         left.play()
         return "left" #被写体は左に
     if(face_box[0][1] > 768*1/2):
-        left.play()
+        forward.play()
         return "forward" #顔はもう少し上に
     if(face_box[3][1] < 768*1/2):
         back.play()
