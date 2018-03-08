@@ -22,7 +22,7 @@ save_path = "./img/"
 def check_face_loc(face_box,left_eye,right_eye,nose_tip):
     if((face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):#ここ調整
         print("もう少し近づいて")
-        return "move forward"
+        return "forward"
     if(face_box[0][0] > 1024*1/2):
         return "right" #被写体は右に
     if(face_box[1][0] < 1024*1/2):
