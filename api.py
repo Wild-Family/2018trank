@@ -91,7 +91,6 @@ def get_pic(id):
     pic_loc = save_path + pic_name
 
     # 撮影
-    for i in range(4):
         
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
