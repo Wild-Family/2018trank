@@ -75,7 +75,7 @@ def highlight_faces(image, faces):
         
         box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]#(左上、右上、右下、左下)
         draw.line(box + [box[0]], width=5, fill='#00ff00')
-    im.save("./output.jpg")
+    im.save("./img/output.jpg")
     return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
 def get_face(input_filename,max_results):
