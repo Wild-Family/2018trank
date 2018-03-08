@@ -29,8 +29,6 @@ def status(id):
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
 
-    #sound2.play()	
-
     return pic_loc
 
 @route('/pic/<id>')
