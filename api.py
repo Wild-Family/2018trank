@@ -25,6 +25,7 @@ forward = pygame.mixer.Sound("./forward.wav")
 back    = pygame.mixer.Sound("./back.wav")
 left    = pygame.mixer.Sound("./left.wav")
 right   = pygame.mixer.Sound("./right.wav")
+end     = pygame.mixer.Sound("./end.wav")
 
 save_path = "./img/"
 
@@ -130,6 +131,10 @@ def get_pic(id):
         os.remove(pic_loc)
         return content
     #return "faile do not exists"
+
+@route('/end/<id>')
+def end(id):
+    end.play()
 
 #TODO:localhost setting
 run(host='localhost', port=8080, debug=True)
