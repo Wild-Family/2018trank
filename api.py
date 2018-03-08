@@ -19,7 +19,6 @@ camera = picamera.PiCamera()
 pygame.mixer.init()
 start   = pygame.mixer.Sound("./take1.wav")
 take    = pygame.mixer.Sound("./take.wav")
-wait    = pygame.mixer.Sound("./wait.wav")
 nobody  = pygame.mixer.Sound("./nobody.wav")
 forward = pygame.mixer.Sound("./forward.wav")
 back    = pygame.mixer.Sound("./back.wav")
@@ -99,7 +98,6 @@ def main(id):
 
     print(wait_flag)
     if wait_flag:
-        wait.play()
         return "wait"
     wait_flag = True
     start.play()
