@@ -72,6 +72,7 @@ def main(id):
 def status(id):
     #take picture
     global save_path
+    global camera
     pic_name  =  id + ".jpg"
     pic_loc   = save_path + pic_name
 
@@ -85,6 +86,7 @@ def status(id):
 @route('/pic/<id>')
 def get_pic(id):
     global save_path
+    global camera
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
