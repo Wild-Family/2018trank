@@ -17,8 +17,14 @@ wait_flag = False
 camera = picamera.PiCamera()
 
 pygame.mixer.init()
-start = pygame.mixer.Sound("./take1.wav")
-wait = pygame.mixer.Sound("./wait.wav")
+start   = pygame.mixer.Sound("./take1.wav")
+take    = pygame.mixer.Sound("./take.wav")
+wait    = pygame.mixer.Sound("./wait.wav")
+nobody  = pygame.mixer.Sound("./nobody.wav")
+forward = pygame.mixer.Sound("./forward.wav")
+back    = pygame.mixer.Sound("./back.wav")
+left    = pygame.mixer.Sound("./left.wav")
+right   = pygame.mixer.Sound("./right.wav")
 
 save_path = "./img/"
 
@@ -27,12 +33,16 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip):
     #     print("もう少し近づいて")
     #     return "forward"
     if(face_box[0][0] > 1024*1/2):
+        right.play()
         return "right" #被写体は右に
     if(face_box[1][0] < 1024*1/2):
+        left.play()
         return "left" #被写体は左に
     if(face_box[0][1] > 768*1/2):
+        left.play()
         return "forward" #顔はもう少し上に
     if(face_box[3][1] < 768*1/2):
+        back.play()
         return "back" #顔はもう少し下に
     return "ok"
 
@@ -66,6 +76,7 @@ def get_face(input_filename,max_results):
         faces = detect_face(image)
         if not faces:
             print("顔を認識できません")
+            nobody.play()
             return "nobody"
         image.seek(0)
         return highlight_faces(image, faces)
@@ -102,6 +113,7 @@ def get_pic(id):
     pic_loc = save_path + pic_name
 
     # 撮影
+    take.play()
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
 
