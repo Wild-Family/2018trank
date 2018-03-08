@@ -45,6 +45,7 @@ def get_pic(id):
     with open(pic_loc, 'rb') as fh:
         content = fh.read()
         response.set_header('Content-Length', str(len(content)))
+        os.remove(pic_loc)
         return content
     #return "faile do not exists"
 
