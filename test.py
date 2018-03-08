@@ -80,6 +80,7 @@ def highlight_faces(image, faces):
     return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
 def get_face(input_filename,max_results):
+    global nobody
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
         if not faces:
