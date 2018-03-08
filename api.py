@@ -82,6 +82,12 @@ def get_pic(id):
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
+    # 撮影
+    for i in range(4):
+        
+    camera.resolution = (1024,768) 
+    camera.capture(pic_loc)
+
     if not os.path.isfile(pic_loc):
         return "file do not exists"
 
