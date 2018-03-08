@@ -31,6 +31,7 @@ angry   = pygame.mixer.Sound("./angry.wav")
 count1  = pygame.mixer.Sound("./count1.wav")
 count2  = pygame.mixer.Sound("./count2.wav")
 count3  = pygame.mixer.Sound("./count3.wav")
+camera  = pygame.mixer.Sound("./camera.wav")
 
 save_path = "./img/"
 
