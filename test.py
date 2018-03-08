@@ -102,6 +102,7 @@ if __name__ == '__main__':
     count1.play()
     time.sleep(1)
     shut.play()
+    nobody.play()
     camera.capture(pic_loc)
 
     check_face_loc_result = get_face(pic_loc, 1)
