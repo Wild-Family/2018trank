@@ -41,6 +41,9 @@ def detect_face(face_file, max_results=4):
 
 def highlight_faces(image, faces):
     box = ((0,0), (0,0), (0,0), (0,0))
+    left_eye = None
+    right_eye = None
+    nose_tip = None
     for face in faces:
         left_eye =  face.landmarks[0].position
         right_eye = face.landmarks[1].position
