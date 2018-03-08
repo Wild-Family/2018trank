@@ -155,6 +155,7 @@ def end_obachan(id):
 
 @route('/angry/<id>')
 def angry_obachan(id):
+    global wait_flag
     wait_flag = False
     angry.play()
     return "angry"
