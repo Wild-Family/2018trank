@@ -49,7 +49,6 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
         print("笑顔になって")
         smile.play()
         return "smile"
-    shut.play()
     return "ok"
 
 def detect_face(face_file, max_results=4):
