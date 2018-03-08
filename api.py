@@ -11,6 +11,8 @@ from google.cloud import vision
 from google.cloud.vision import types
 from PIL import Image, ImageDraw
 
+# キュー
+wait_flag = False
 
 camera = picamera.PiCamera()
 
@@ -69,6 +71,11 @@ def get_face(input_filename,max_results):
 
 @route('/start/<id>')
 def main(id):
+    global wait_flag
+
+    if not wait_flag:
+        return "wait"
+    wait_flag = true
     sound1.play()
     return str(id)
 
@@ -84,7 +91,6 @@ def status(id):
     status = get_face(pic_loc, 1)
     return status
 
-
 @route('/pic/<id>')
 def get_pic(id):
     global save_path
@@ -95,6 +101,9 @@ def get_pic(id):
     # 撮影
     camera.resolution = (1024,768) 
     camera.capture(pic_loc)
+
+    # wait_flag
+    wait_flag = false
 
     if not os.path.isfile(pic_loc):
         return "file do not exists"
