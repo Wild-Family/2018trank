@@ -35,7 +35,7 @@ smile_again     = pygame.mixer.Sound("./smile_again.wav")
 save_path = "./img/"
 former_status = None
 
-def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
+def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     global former_status
     if(face_box[0][0] > 1024*1/2):
         if former_status == "right":
@@ -74,6 +74,9 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
         return "smile"
     return "ok"
 
+def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
+    
+
 def detect_face(face_file, max_results=4):
     client = vision.ImageAnnotatorClient()
     content = face_file.read()
@@ -81,7 +84,7 @@ def detect_face(face_file, max_results=4):
     return client.face_detection(image=image).face_annotations
 
 def highlight_faces(image, faces):
-    box = ((0,0), (0,0), (0,0), (0,0))
+    box = None
     left_eye = None
     right_eye = None
     nose_tip = None
@@ -90,16 +93,27 @@ def highlight_faces(image, faces):
     im = Image.open(image)
     draw = ImageDraw.Draw(im)
 
-    for face in faces:
-        left_eye =  face.landmarks[0].position
-        right_eye = face.landmarks[1].position
-        nose_tip =  face.landmarks[7].position
-        joyLikelihood = face.joy_likelihood
+    if len(faces) == 1:
+        for face in faces:
+            left_eye =  face.landmarks[0].position
+            right_eye = face.landmarks[1].position
+            nose_tip =  face.landmarks[7].position
+            joyLikelihood = face.joy_likelihood
+            
+            box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
+            draw.line(box + [box[0]], width=5, fill='#00ff00')
+        im.save("./img/output.jpg")
+        return check_face_loc_lonely(box,left_eye,right_eye,nose_tip,joyLikelihood)
+    else:
+        box             = [None in for range(len(faces))]
+        left_eye        = [None in for range(len(faces))]
+        right_eye       = [None in for range(len(faces))]
+        nose_tip        = [None in for range(len(faces))]
+        joyLikelihood   = [None in for range(len(faces))]
+        for face in faces:
+            print(face)
+        return "aa"
         
-        box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
-        draw.line(box + [box[0]], width=5, fill='#00ff00')
-    im.save("./img/output.jpg")
-    return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
 def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
