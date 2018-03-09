@@ -157,7 +157,6 @@ def status(id):
 def get_pic(id):
     global save_path
     global camera
-    global wait_flag
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
@@ -174,9 +173,6 @@ def get_pic(id):
     shut.play()
     camera.capture(pic_loc)
 
-    # wait_flag
-    wait_flag = False
-
     if not os.path.isfile(pic_loc):
         return "file do not exists"
 
@@ -191,6 +187,8 @@ def get_pic(id):
 @route('/end/<id>')
 def end_obachan(id):
     global former_status
+    global wait_flag
+    wait_flag = False
     former_status = None
     end.play()
 
