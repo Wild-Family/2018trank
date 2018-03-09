@@ -79,8 +79,8 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     print(left_eye)
     print(right_eye)
     print(joyLikelihood)
+
     return "ok"
-    
 
 def detect_face(face_file, max_results=4):
     client = vision.ImageAnnotatorClient()
@@ -104,11 +104,11 @@ def highlight_faces(image, faces):
             box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
         return check_face_loc_lonely(box,left_eye,right_eye,nose_tip,joyLikelihood)
     else:
-        box             = [None for i in range(len(faces))]
-        left_eye        = [None for i in range(len(faces))]
-        right_eye       = [None for i in range(len(faces))]
-        nose_tip        = [None for i in range(len(faces))]
-        joyLikelihood   = [None for i in range(len(faces))]
+        box             = []
+        left_eye        = []
+        right_eye       = []
+        nose_tip        = []
+        joyLikelihood   = []
         for value in faces:
             left_eye.append(value.landmarks[0].position)
             right_eye.append(value.landmarks[1].position)
