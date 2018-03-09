@@ -104,7 +104,7 @@ def detect_face(face_file, max_results=4):
     return client.face_detection(image=image).face_annotations
 
 def highlight_faces(image, faces):
-    box = ((0,0), (0,0), (0,0), (0,0))
+    box = None
     left_eye = None
     right_eye = None
     nose_tip = None
@@ -164,6 +164,7 @@ def get_pic(id):
     # 撮影
     take.play()
     camera.resolution = (1024,768)
+    time.sleep(2)
     count3.play()
     time.sleep(1)
     count2.play()
