@@ -68,14 +68,14 @@ def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
         former_status = "back"
         back.play()
         return "back" #顔はもう少し下に
-    if(face_box[0][0] > 1024*2/3) :
+    if(face_box[0][0] > 1024*1/2) :
         if former_status == "right":
             right_again.play()
             return "right again"
         former_status = "right"
         right.play()
         return "right" #被写体は右に
-    if(face_box[1][0] < 1024*1/3) :
+    if(face_box[1][0] < 1024*1/2) :
         if former_status == "left":
             left_again.play()
             return "left again"
