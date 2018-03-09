@@ -30,19 +30,16 @@ save_path = "./img/"
 
 
 def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
-    if((face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):#ここ調整
-        print("もう少し近づいて")
-        return "forward"
     if(face_box[0][0] > 1024*1/2):
         right.play()
         return "right" #被写体は右に
     if(face_box[1][0] < 1024*1/2):
         left.play()
         return "left" #被写体は左に
-    if(face_box[0][1] > 768*1/2):
+    if(face_box[0][1] > 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):
         forward.play()
         return "forward" #顔はもう少し上に
-    if(face_box[3][1] < 768*1/2):
+    if(face_box[3][1] < 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500):
         back.play()
         return "back" #顔はもう少し下に
     if(joyLikelihood == 1):
