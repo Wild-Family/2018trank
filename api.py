@@ -44,14 +44,14 @@ smile_again     = pygame.mixer.Sound("./smile_again.wav")
 
 def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     global former_status
-    if(face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200 :
+    if(face_box[0][0]-face_box[1][0])*(face_box[2][1]-face_box[1][1]) < 200 * 200 :
         if former_status == "forward":
             forward_again.play()
             return "forward again"
         former_status = "forward"
         forward.play()
         return "forward" #顔はもう少し上に
-    if(face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500 :
+    if(face_box[0][0]-face_box[1][0])*(face_box[2][1]-face_box[1][1]) > 500 * 500 :
         if former_status == "back":
             back_again.play()
             return "back again"
