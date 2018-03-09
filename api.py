@@ -118,7 +118,7 @@ def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
             former_status = "center"
             center.play()
             return "center"
-        if(face_box[1][0] < 1024):
+        if(face_box[1][0] < 0):
             if former_status == "center":
                 center_again.play()
                 return "center again"
