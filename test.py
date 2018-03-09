@@ -74,12 +74,48 @@ def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
         return "smile"
     return "ok"
 
-def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
+def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
     print(face_box)
     print(left_eye)
     print(right_eye)
     print(joyLikelihood)
-
+    for face_box in face_boxes:
+        if(face_box[0][0] > 1024*1/2):
+            if former_status == "center":
+                right_again.play()
+                return "center again"
+            former_status = "center"
+            right.play()
+            return "center"
+        if(face_box[1][0] < 1024*1/2):
+            if former_status == "center":
+                left_again.play()
+                return "center again"
+            former_status = "center"
+            left.play()
+            return "center"
+        if(face_box[0][1] > 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):
+            if former_status == "forwards":
+                forward_again.play()
+                return "forward again"
+            former_status = "forwards"
+            forward.play()
+            return "forwards"
+        if(face_box[3][1] < 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500):
+            if former_status == "backs":
+                back_again.play()
+                return "backs again"
+            former_status = "backs"
+            back.play()
+            return "backs"
+    for joyLikelihood in joyLikelihoods:
+        if(joyLikelihood == 1):
+            if former_status == "smiles":
+                smile_again.play()
+                return "smiles again"
+            former_status = "smiles"
+            smile.play()
+            return "smiles"
     return "ok"
 
 def detect_face(face_file, max_results=4):
@@ -116,6 +152,7 @@ def highlight_faces(image, faces):
             joyLikelihood.append(value.joy_likelihood)
             box.append([(vertex.x, vertex.y) for vertex in value.bounding_poly.vertices])
         return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
+
 def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
