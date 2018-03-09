@@ -250,7 +250,7 @@ def get_pic(id):
         content = fh.read()
         response.set_header('Content-Length', str(len(content)))
         return content
-    #return "faile do not exists"
+    return "file do not exists"
 
 @route('/end/<id>')
 def end_obachan(id):
