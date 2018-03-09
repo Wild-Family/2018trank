@@ -125,14 +125,14 @@ def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
             former_status = "center"
             center.play()
             return "center"
-        if face_box[0][1] > 768*1/2:
+        if face_box[0][1] > 768:
             if former_status == "forwards":
                 forwards_again.play()
                 return "forwards again"
             former_status = "forwards"
             forwards.play()
             return "forwards"
-        if face_box[3][1] < 768*1/2:
+        if face_box[3][1] < 0:
             if former_status == "backs":
                 backs_again.play()
                 return "backs again"
