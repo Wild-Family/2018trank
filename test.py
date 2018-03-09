@@ -26,23 +26,50 @@ count2  = pygame.mixer.Sound("./count2.wav")
 count3  = pygame.mixer.Sound("./count3.wav")
 shut    = pygame.mixer.Sound("./camera.wav")
 
-save_path = "./img/"
+forward_again   = pygame.mixer.Sound("./forward_again.wav")
+back_again      = pygame.mixer.Sound("./back_again.wav")
+right_again     = pygame.mixer.Sound("./right_again.wav")
+left_again      = pygame.mixer.Sound("./left_again.wav")
+smile_again     = pygame.mixer.Sound("./smile_again.wav")
 
+save_path = "./img/"
+former_status = None
 
 def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
+    global former_status
     if(face_box[0][0] > 1024*1/2):
+        if former_status == "right":
+            right_again.play()
+            return "right again"
+        former_status = "right"
         right.play()
         return "right" #被写体は右に
     if(face_box[1][0] < 1024*1/2):
+        if former_status == "left":
+            left_again.play()
+            return "left again"
+        former_status = "left"
         left.play()
         return "left" #被写体は左に
     if(face_box[0][1] > 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):
+        if former_status == "forward":
+            forward_again.play()
+            return "forward again"
+        former_status = "forward"
         forward.play()
         return "forward" #顔はもう少し上に
     if(face_box[3][1] < 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500):
+        if former_status == "back":
+            back_again.play()
+            return "back again"
+        former_status = "back"
         back.play()
         return "back" #顔はもう少し下に
     if(joyLikelihood == 1):
+        if former_status == "smile":
+            smile_again.play()
+            return "smile again"
+        former_status = "smile"
         print("笑顔になって")
         smile.play()
         return "smile"
