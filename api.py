@@ -54,7 +54,6 @@ center_again    = pygame.mixer.Sound("./center_again.wav")
 
 def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     global former_status
-    print(str(face_box))
     if (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200 :
         if former_status == "forward":
             forward_again.play()
@@ -109,6 +108,7 @@ def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
 
 def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
     global former_status
+    print("2")
     for face_box in face_boxes:
         if(face_box[0][0] > 1024):
             if former_status == "center":
