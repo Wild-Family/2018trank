@@ -70,7 +70,6 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
             smile_again.play()
             return "smile again"
         former_status = "smile"
-        print("笑顔になって")
         smile.play()
         return "smile"
     return "ok"
@@ -106,7 +105,7 @@ def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
         if not faces:
-            print("顔を認識できません")
+            print("can not recognize")
             nobody.play()
             return "nobody"
         image.seek(0)
