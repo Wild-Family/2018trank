@@ -89,7 +89,7 @@ def detect_face(face_file, max_results=4):
     return client.face_detection(image=image).face_annotations
 
 def highlight_faces(image, faces):
-    print(faces)
+    print(len(faces))
     if len(faces) == None:
         box = None
         left_eye = None
