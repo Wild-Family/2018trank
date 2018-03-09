@@ -96,11 +96,12 @@ def highlight_faces(image, faces):
         right_eye = None
         nose_tip = None
         joyLikelihood = None
-        left_eye =  faces.landmarks[0].position
-        right_eye = faces.landmarks[1].position
-        nose_tip =  faces.landmarks[7].position
-        joyLikelihood = faces.joy_likelihood
-        box = [(vertex.x, vertex.y) for vertex in faces.bounding_poly.vertices]
+        for face in faces:
+            left_eye =  face.landmarks[0].position
+            right_eye = face.landmarks[1].position
+            nose_tip =  face.landmarks[7].position
+            joyLikelihood = face.joy_likelihood
+            box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
         return check_face_loc_lonely(box,left_eye,right_eye,nose_tip,joyLikelihood)
     else:
         box             = [None for i in range(len(faces))]
