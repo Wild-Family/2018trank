@@ -96,12 +96,11 @@ def highlight_faces(image, faces):
         right_eye = None
         nose_tip = None
         joyLikelihood = None
-        for face in faces:
-            left_eye =  face.landmarks[0].position
-            right_eye = face.landmarks[1].position
-            nose_tip =  face.landmarks[7].position
-            joyLikelihood = face.joy_likelihood
-            box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
+        left_eye =  face.landmarks[0].position
+        right_eye = face.landmarks[1].position
+        nose_tip =  face.landmarks[7].position
+        joyLikelihood = face.joy_likelihood
+        box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
         return check_face_loc_lonely(box,left_eye,right_eye,nose_tip,joyLikelihood)
     else:
         box             = [None for i in range(len(faces))]
@@ -110,13 +109,11 @@ def highlight_faces(image, faces):
         nose_tip        = [None for i in range(len(faces))]
         joyLikelihood   = [None for i in range(len(faces))]
         for value in faces:
-            print(value)
-            # for face in value:
-            #     left_eye.append(face.landmarks[0].position)
-            #     right_eye.append(face.landmarks[1].position)
-            #     nose_tip.append(face.landmarks[7].position)
-            #     joyLikelihood.append(face.joy_likelihood)
-            #     box.append([(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices])
+            left_eye.append(face.landmarks[0].position)
+            right_eye.append(face.landmarks[1].position)
+            nose_tip.append(face.landmarks[7].position)
+            joyLikelihood.append(face.joy_likelihood)
+            box.append([(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices])
         return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
