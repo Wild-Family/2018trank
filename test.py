@@ -104,11 +104,11 @@ def highlight_faces(image, faces):
             box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
         return check_face_loc_lonely(box,left_eye,right_eye,nose_tip,joyLikelihood)
     else:
-        box             = [None in for range(len(faces))]
-        left_eye        = [None in for range(len(faces))]
-        right_eye       = [None in for range(len(faces))]
-        nose_tip        = [None in for range(len(faces))]
-        joyLikelihood   = [None in for range(len(faces))]
+        box             = [None for i in range(len(faces))]
+        left_eye        = [None for i in range(len(faces))]
+        right_eye       = [None for i in range(len(faces))]
+        nose_tip        = [None for i in range(len(faces))]
+        joyLikelihood   = [None for i in range(len(faces))]
         for idx, value in faces:
             for face in faces[idx]:
                 left_eye[idx] = face.landmarks[0].position
