@@ -186,7 +186,6 @@ def get_face(input_filename, max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
         if not faces:
-            print("顔を認識できません")
             nobody.play()
             return "nobody"
         image.seek(0)
