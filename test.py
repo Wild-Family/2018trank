@@ -109,13 +109,13 @@ def highlight_faces(image, faces):
         right_eye       = [None for i in range(len(faces))]
         nose_tip        = [None for i in range(len(faces))]
         joyLikelihood   = [None for i in range(len(faces))]
-        for idx in range(len(faces)):
-            for face in faces[idx]:
-                left_eye[idx] = face.landmarks[0].position
-                right_eye[idx] = face.landmarks[1].position
-                nose_tip[idx] =  face.landmarks[7].position
-                joyLikelihood[idx] = face.joy_likelihood
-                box[idx] = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
+        for value in range(len(faces)):
+            for face in value:
+                left_eye.append(face.landmarks[0].position)
+                right_eye.append(face.landmarks[1].position)
+                nose_tip.append(face.landmarks[7].position)
+                joyLikelihood.append(face.joy_likelihood)
+                box.append([(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices])
         return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
