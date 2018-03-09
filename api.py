@@ -156,7 +156,6 @@ def status(id):
 @route('/pic/<id>')
 def get_pic(id):
     global save_path
-    global camera
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
@@ -180,7 +179,6 @@ def get_pic(id):
     with open(pic_loc, 'rb') as fh:
         content = fh.read()
         response.set_header('Content-Length', str(len(content)))
-        os.remove(pic_loc)
         return content
     #return "faile do not exists"
 
@@ -188,8 +186,14 @@ def get_pic(id):
 def end_obachan(id):
     global former_status
     global wait_flag
+    global save_path
+    pic_name = id + ".jpg"
+    pic_loc = save_path + pic_name
+
     wait_flag = False
     former_status = None
+    
+    os.remove(pic_loc)
     end.play()
 
 @route('/angry/<id>')
