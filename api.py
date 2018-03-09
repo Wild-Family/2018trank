@@ -110,6 +110,7 @@ def highlight_faces(image, faces):
     nose_tip = None
     joyLikelihood = None
 
+    print(face)
     for face in faces:
         left_eye =  face.landmarks[0].position
         right_eye = face.landmarks[1].position
@@ -118,7 +119,7 @@ def highlight_faces(image, faces):
         box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
     return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
-def get_face(input_filename,max_results):
+def get_face(input_filename, max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
         if not faces:
@@ -156,6 +157,12 @@ def status(id):
 @route('/pic/<id>')
 def get_pic(id):
     global save_path
+    global former_status
+    global wait_flag
+
+    wait_flag = False
+    former_status = None
+
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
@@ -184,15 +191,10 @@ def get_pic(id):
 
 @route('/end/<id>')
 def end_obachan(id):
-    global former_status
-    global wait_flag
     global save_path
     pic_name = id + ".jpg"
     pic_loc = save_path + pic_name
 
-    wait_flag = False
-    former_status = None
-    
     os.remove(pic_loc)
     end.play()
 
