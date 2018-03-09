@@ -43,28 +43,28 @@ def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
             return "right again"
         former_status = "right"
         right.play()
-        return "right" #被写体は右に
+        return "right"
     if(face_box[1][0] < 1024*1/2):
         if former_status == "left":
             left_again.play()
             return "left again"
         former_status = "left"
         left.play()
-        return "left" #被写体は左に
+        return "left"
     if(face_box[0][1] > 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):
         if former_status == "forward":
             forward_again.play()
             return "forward again"
         former_status = "forward"
         forward.play()
-        return "forward" #顔はもう少し上に
+        return "forward"
     if(face_box[3][1] < 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500):
         if former_status == "back":
             back_again.play()
             return "back again"
         former_status = "back"
         back.play()
-        return "back" #顔はもう少し下に
+        return "back"
     if(joyLikelihood == 1):
         if former_status == "smile":
             smile_again.play()
@@ -97,7 +97,7 @@ def highlight_faces(image, faces):
         nose_tip =  face.landmarks[7].position
         joyLikelihood = face.joy_likelihood
         
-        box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]#(左上、右上、右下、左下)
+        box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
         draw.line(box + [box[0]], width=5, fill='#00ff00')
     im.save("./img/output.jpg")
     return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
