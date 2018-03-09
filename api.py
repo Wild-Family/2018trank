@@ -42,6 +42,16 @@ right_again     = pygame.mixer.Sound("./right_again.wav")
 left_again      = pygame.mixer.Sound("./left_again.wav")
 smile_again     = pygame.mixer.Sound("./smile_again.wav")
 
+forwards = pygame.mixer.Sound("./forwards.wav")
+backs    = pygame.mixer.Sound("./backs.wav")
+smiles   = pygame.mixer.Sound("./smiles.wav")
+center  = pygame.mixer.Sound("./center.wav")
+forwards_again   = pygame.mixer.Sound("./forwards_again.wav")
+backs_again      = pygame.mixer.Sound("./backs_again.wav")
+smiles_again     = pygame.mixer.Sound("./smiles_again.wav")
+center_again    = pygame.mixer.Sound("./center_again.wav")
+
+
 def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     global former_status
     print(str(face_box))
@@ -102,39 +112,39 @@ def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
     for face_box in face_boxes:
         if(face_box[0][0] > 1024*1/2):
             if former_status == "center":
-                right_again.play()
+                center_again.play()
                 return "center again"
             former_status = "center"
-            right.play()
+            center.play()
             return "center"
         if(face_box[1][0] < 1024*1/2):
             if former_status == "center":
-                left_again.play()
+                center_again.play()
                 return "center again"
             former_status = "center"
-            left.play()
+            center.play()
             return "center"
         if(face_box[0][1] > 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):
             if former_status == "forwards":
-                forward_again.play()
+                forwards_again.play()
                 return "forwards again"
             former_status = "forwards"
-            forward.play()
+            forwards.play()
             return "forwards"
         if(face_box[3][1] < 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500):
             if former_status == "backs":
-                back_again.play()
+                backs_again.play()
                 return "backs again"
             former_status = "backs"
-            back.play()
+            backs.play()
             return "backs"
     for joyLikelihood in joyLikelihoods:
         if(joyLikelihood == 1):
             if former_status == "smiles":
-                smile_again.play()
+                smiles_again.play()
                 return "smiles again"
             former_status = "smiles"
-            smile.play()
+            smiles.play()
             return "smiles"
     return "ok"
 
