@@ -109,7 +109,7 @@ def highlight_faces(image, faces):
         right_eye       = [None for i in range(len(faces))]
         nose_tip        = [None for i in range(len(faces))]
         joyLikelihood   = [None for i in range(len(faces))]
-        for value in range(len(faces)):
+        for value in faces:
             for face in value:
                 left_eye.append(face.landmarks[0].position)
                 right_eye.append(face.landmarks[1].position)
