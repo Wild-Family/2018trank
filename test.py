@@ -89,25 +89,18 @@ def detect_face(face_file, max_results=4):
     return client.face_detection(image=image).face_annotations
 
 def highlight_faces(image, faces):
-    box = None
-    left_eye = None
-    right_eye = None
-    nose_tip = None
-    joyLikelihood = None
-
-    im = Image.open(image)
-    draw = ImageDraw.Draw(im)
-
     if len(faces) == 1:
+        box = None
+        left_eye = None
+        right_eye = None
+        nose_tip = None
+        joyLikelihood = None
         for face in faces:
             left_eye =  face.landmarks[0].position
             right_eye = face.landmarks[1].position
             nose_tip =  face.landmarks[7].position
             joyLikelihood = face.joy_likelihood
-            
             box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
-            draw.line(box + [box[0]], width=5, fill='#00ff00')
-        im.save("./img/output.jpg")
         return check_face_loc_lonely(box,left_eye,right_eye,nose_tip,joyLikelihood)
     else:
         box             = [None in for range(len(faces))]
