@@ -90,7 +90,7 @@ def detect_face(face_file, max_results=4):
 
 def highlight_faces(image, faces):
     print(len(faces))
-    if len(faces) == None:
+    if len(faces) == 1:
         box = None
         left_eye = None
         right_eye = None
