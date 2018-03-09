@@ -75,6 +75,11 @@ def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     return "ok"
 
 def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
+    print(face_box)
+    print(left_eye)
+    print(right_eye)
+    print(joyLikelihood)
+    return "ok"
     
 
 def detect_face(face_file, max_results=4):
@@ -110,11 +115,14 @@ def highlight_faces(image, faces):
         right_eye       = [None in for range(len(faces))]
         nose_tip        = [None in for range(len(faces))]
         joyLikelihood   = [None in for range(len(faces))]
-        for face in faces:
-            print(face)
-        return "aa"
-        
-
+        for idx, value in faces:
+            for face in faces[idx]:
+                left_eye[idx] = face.landmarks[0].position
+                right_eye[idx] = face.landmarks[1].position
+                nose_tip[idx] =  face.landmarks[7].position
+                joyLikelihood[idx] = face.joy_likelihood
+                box[idx] = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
+        return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 def get_face(input_filename,max_results):
     with open(input_filename, 'rb') as image:
         faces = detect_face(image)
