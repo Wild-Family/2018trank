@@ -110,6 +110,7 @@ def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
     global former_status
     print("2")
     for face_box in face_boxes:
+        print(face_box)
         if(face_box[0][0] > 1024):
             if former_status == "center":
                 center_again.play()
