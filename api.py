@@ -110,28 +110,28 @@ def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
 def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
     global former_status
     for face_box in face_boxes:
-        if(face_box[0][0] > 1024*1/3):
+        if(face_box[0][0] > 1024*3/4):
             if former_status == "center":
                 center_again.play()
                 return "center again"
             former_status = "center"
             center.play()
             return "center"
-        if(face_box[1][0] < 1024*2/3):
+        if(face_box[1][0] < 1024*3/4):
             if former_status == "center":
                 center_again.play()
                 return "center again"
             former_status = "center"
             center.play()
             return "center"
-        if(face_box[0][1] > 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) < 200 * 200):
+        if face_box[0][1] > 768*1/2:
             if former_status == "forwards":
                 forwards_again.play()
                 return "forwards again"
             former_status = "forwards"
             forwards.play()
             return "forwards"
-        if(face_box[3][1] < 768*1/2 or (face_box[0][0]-face_box[1][0])*(face_box[1][1]-face_box[2][1]) > 500 * 500):
+        if face_box[3][1] < 768*1/2:
             if former_status == "backs":
                 backs_again.play()
                 return "backs again"
