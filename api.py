@@ -115,6 +115,7 @@ def highlight_faces(image, faces):
         right_eye = face.landmarks[1].position
         nose_tip =  face.landmarks[7].position
         joyLikelihood = face.joy_likelihood
+        box = [(vertex.x, vertex.y) for vertex in face.bounding_poly.vertices]
     return check_face_loc(box,left_eye,right_eye,nose_tip,joyLikelihood)
 
 def get_face(input_filename,max_results):
