@@ -75,10 +75,6 @@ def check_face_loc_lonely(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     return "ok"
 
 def check_face_loc(face_boxes,left_eyes,right_eyes,nose_tips,joyLikelihoods):
-    print(face_box)
-    print(left_eye)
-    print(right_eye)
-    print(joyLikelihood)
     for face_box in face_boxes:
         if(face_box[0][0] > 1024*1/2):
             if former_status == "center":
