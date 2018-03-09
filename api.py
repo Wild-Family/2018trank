@@ -14,8 +14,11 @@ from PIL import Image, ImageDraw
 
 # キュー
 wait_flag = False
+former_status = None
+
 
 camera = picamera.PiCamera()
+save_path = "./img/"
 
 pygame.mixer.init()
 start   = pygame.mixer.Sound("./take1.wav")
@@ -38,9 +41,6 @@ back_again      = pygame.mixer.Sound("./back_again.wav")
 right_again     = pygame.mixer.Sound("./right_again.wav")
 left_again      = pygame.mixer.Sound("./left_again.wav")
 smile_again     = pygame.mixer.Sound("./smile_again.wav")
-
-save_path = "./img/"
-former_status = None
 
 def check_face_loc(face_box,left_eye,right_eye,nose_tip,joyLikelihood):
     global former_status
@@ -173,12 +173,16 @@ def get_pic(id):
 
 @route('/end/<id>')
 def end_obachan(id):
+    global former_status
+    former_status = None
     end.play()
 
 @route('/angry/<id>')
 def angry_obachan(id):
     global wait_flag
+    global former_status
     wait_flag = False
+    former_status = None
     angry.play()
     return "angry"
 
