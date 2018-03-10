@@ -1,6 +1,5 @@
-# 2018trank
+# API Server on Raspberry Pi 3 Model B
 2018 trank hackathon in Osaka.
-API Server on Raspberry Pi
 
 # LINK
 
