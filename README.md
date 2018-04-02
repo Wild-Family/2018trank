@@ -42,6 +42,7 @@ Botサーバをherokuで実行する場合，composer.jsonのrequireに以下が
 - [アプリケーションのデフォルト認証情報を使用するための環境を設定](https://cloud.google.com/vision/docs/common/auth?hl=ja#authenticating_with_application_default_credentials)
 - Pythonの設定
     - [Pythonのインストール](https://www.python.org/)
+    	- Python 3を選択してください
     - [google client ライブラリのインストール](https://cloud.google.com/vision/docs/reference/libraries?hl=ja#installing_the_client_library)([ライブラリのドキュメント](https://googlecloudplatform.github.io/google-cloud-python/#/docs))
     - [pillow ライブラリのインストール](https://pillow.readthedocs.io/en/latest/)
   
