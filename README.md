@@ -24,6 +24,8 @@
 
 1. オバチャンに「とって」と頼んでみよう！
 
+※本リポジトリの依存ライブラリをrequirements.txtからインストールする場合，```pip3 -r install requirements.txt```を管理者権限で実行してください
+
 ※LINE Botを動作させるにはPHP拡張モジュールのGDが必要です．
 Botサーバをherokuで実行する場合，composer.jsonのrequireに以下が記述されている事を確認した後，`composer update`してください
 ```
