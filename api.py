@@ -196,6 +196,9 @@ def get_face(input_filename, max_results):
 def main(id):
     global wait_flag
 
+    if not os.path.isdir(save_path):
+        os.mkdir(save_path)
+
     print(wait_flag)
     if wait_flag:
         return "wait"
